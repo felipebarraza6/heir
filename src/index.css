@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Tema oscuro cálido + terracota + salvia */
+    --paper: #17140f;
+    --paper-2: #1f1a13;
+    --ink: #ece7e0;
+    --ink-2: #a79e91;
+    --terra: #d4694a;
+    --terra-hover: #e07a5a;
+    --terra-soft: #3a241a;
+    --sage: #22301a;
+    --sage-deep: #a3c98a;
+    --sage-soft: #22301a;
+    --sand: #27211a;
+    --dark: #2c2620;
+    --line: rgba(236, 231, 224, 0.1);
+    --line-strong: rgba(236, 231, 224, 0.22);
+
+    --background: 30 20% 7%;
+    --foreground: 40 20% 90%;
+    --card: 30 18% 11%;
+    --card-foreground: 40 20% 90%;
+    --popover: 30 18% 11%;
+    --popover-foreground: 40 20% 90%;
+    --primary: 18 62% 56%;
+    --primary-foreground: 40 20% 96%;
+    --secondary: 30 14% 16%;
+    --secondary-foreground: 40 20% 90%;
+    --muted: 30 14% 16%;
+    --muted-foreground: 35 10% 62%;
+    --accent: 30 14% 16%;
+    --accent-foreground: 40 20% 90%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 10% 22%;
+    --input: 30 10% 22%;
+    --ring: 18 62% 56%;
+    --radius: 0.625rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Geist', -apple-system, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: 'ss01' on, 'cv11' on;
+  }
+
+  /* Tipografía legible en todo: Geist con pesos marcados */
+  .font-display {
+    font-family: 'Geist', -apple-system, 'Segoe UI', sans-serif;
+    letter-spacing: -0.022em;
+  }
+
+  .font-mono-y {
+    font-family: 'Geist Mono', ui-monospace, monospace;
+  }
+}
+
+@layer utilities {
+  /* Grano sutil cálido sobre fondo oscuro */
+  .paper-grain {
+    background-image:
+      radial-gradient(ellipse 60% 40% at 20% 10%, rgba(212, 105, 74, 0.07), transparent),
+      radial-gradient(ellipse 50% 40% at 80% 70%, rgba(163, 201, 138, 0.05), transparent);
+  }
+
+  .shadow-warm {
+    box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.55);
+  }
+  .shadow-warm-sm {
+    box-shadow: 0 10px 30px -14px rgba(0, 0, 0, 0.45);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .eyebrow {
+    font-family: 'Geist Mono', ui-monospace, monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .shimmer-chip {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer-chip::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.18) 50%, transparent 100%);
+    animation: shimmer 1.6s linear infinite;
+  }
+  @keyframes shimmer {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+  }
+
+  .caret-blink {
+    display: inline-block;
+    width: 1.5px;
+    height: 13px;
+    background: var(--terra);
+    animation: blink 1s steps(2) infinite;
+    vertical-align: middle;
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  .float-soft {
+    animation: floaty 5s ease-in-out infinite;
+  }
+  .float-soft-d1 {
+    animation: floaty 5s ease-in-out 0.8s infinite;
+  }
+  .float-soft-d2 {
+    animation: floaty 5s ease-in-out 1.6s infinite;
+  }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .marquee-track {
+    animation: marquee 32s linear infinite;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .typing-dot {
+    animation: typing 1.2s ease-in-out infinite;
+  }
+  .typing-dot:nth-child(2) { animation-delay: 0.15s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes typing {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  .pulse-dot {
+    animation: pulsedot 1.6s ease-in-out infinite;
+  }
+  @keyframes pulsedot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(0.8); }
+  }
+
+  .nice-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+  .nice-scroll::-webkit-scrollbar-thumb {
+    background: rgba(236, 231, 224, 0.18);
+    border-radius: 3px;
+  }
+  .nice-scroll::-webkit-scrollbar-track { background: transparent; }
+}
