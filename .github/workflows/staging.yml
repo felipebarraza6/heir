@@ -35,7 +35,11 @@ jobs:
           cache: npm
 
       - name: Instalar dependencias
-        run: npm ci
+        run: |
+          set -euo pipefail
+          # npm a veces muere con "Exit handler never called" en este árbol.
+          # Un segundo intento limpia el fallo; si se repite, el job queda rojo.
+          npm ci || npm ci
 
       - name: Build
         run: npm run build

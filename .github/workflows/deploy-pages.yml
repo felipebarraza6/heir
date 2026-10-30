@@ -30,7 +30,9 @@ jobs:
           cache: npm
 
       - name: Instalar dependencias
-        run: npm ci
+        run: |
+          set -euo pipefail
+          npm ci || npm ci
 
       - name: Build
         run: npm run build
